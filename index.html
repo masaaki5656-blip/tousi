@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>資産防衛・運用戦略レポート</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans JP', sans-serif; }
+        .gradient-text { background-clip: text; -webkit-background-clip: text; color: transparent; background-image: linear-gradient(to right, #2563eb, #059669); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans">
+
+    <div class="max-w-4xl mx-auto bg-white shadow-2xl overflow-hidden my-0 md:my-8 rounded-none md:rounded-2xl">
+        
+        <header class="bg-slate-900 text-white p-8 md:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-4 opacity-10 text-9xl font-black">¥</div>
+            
+            <div class="relative z-10">
+                <div class="inline-block bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-4">重要警告</div>
+                <h1 class="text-3xl md:text-5xl font-black mb-6 leading-tight">
+                    円は「溶ける氷」。<br>
+                    今すぐ資産を逃がせ。
+                </h1>
+                <p class="text-slate-300 text-lg mb-8 font-medium">
+                    何も投資しないことは「現状維持」ではありません。<br>
+                    円安とインフレで、あなたの資産は毎日確実に減り続けています。
+                </p>
+
+                <div class="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-xl">
+                    <h2 class="text-xl font-bold mb-4 flex items-center text-yellow-400">
+                        <span class="mr-2">⚡</span> 結論：とるべき行動は2つだけ
+                    </h2>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-slate-800/80 p-4 rounded-lg border-l-4 border-emerald-500">
+                            <div class="text-emerald-400 font-bold text-sm mb-1">攻めの資産（増やす）</div>
+                            <div class="text-xl font-bold mb-2">全世界株式（オルカン）</div>
+                            <p class="text-xs text-slate-400">主要投資会社はS&P500一本足より、世界分散を推奨し始めています。</p>
+                        </div>
+                        <div class="bg-slate-800/80 p-4 rounded-lg border-l-4 border-yellow-500">
+                            <div class="text-yellow-400 font-bold text-sm mb-1">守りの資産（減らさない）</div>
+                            <div class="text-xl font-bold mb-2">金（Gold）のETF</div>
+                            <p class="text-xs text-slate-400">「現物」は税金で不利。証券口座で買える「GLDM」一択です。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="p-6 md:p-12 space-y-16">
+
+            <section>
+                <div class="flex items-center mb-6">
+                    <span class="bg-red-100 text-red-600 p-3 rounded-lg text-2xl mr-4">📉</span>
+                    <div>
+                        <h2 class="text-2xl md:text-3xl font-bold text-slate-800">なぜ「円」を持っていてはダメなのか</h2>
+                        <p class="text-slate-500 font-bold">答え：日本円が市場に溢れすぎているから（円安の正体）</p>
+                    </div>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm h-72 mb-4">
+                    <canvas id="chartMacro"></canvas>
+                </div>
+                <div class="bg-red-50 p-5 rounded-xl border border-red-100 text-sm text-slate-700">
+                    <p><strong>解説：</strong> グラフの赤い線を見てください。日本（日銀）はお金を刷り続けています。モノ（金や株）の量は変わらないのに、お金（円）の量だけ増えれば、当然「円の価値」は下がります。これが円安とインフレの正体です。</p>
+                </div>
+            </section>
+
+            <section>
+                <div class="flex items-center mb-6">
+                    <span class="bg-blue-100 text-blue-600 p-3 rounded-lg text-2xl mr-4">📊</span>
+                    <div>
+                        <h2 class="text-2xl md:text-3xl font-bold text-slate-800">【過去30年】株を持っていた人が勝者</h2>
+                        <p class="text-slate-500 font-bold">1995年を100とした資産価値の推移</p>
+                    </div>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm h-80 mb-4">
+                    <canvas id="chartHistory"></canvas>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4 text-sm">
+                    <div class="bg-blue-50 p-4 rounded-lg text-blue-900">
+                        <strong>株式（米国・世界）の圧勝：</strong><br>
+                        米国株（S&P500）が最強でしたが、オルカン（世界株）もしっかり成長しています。
+                    </div>
+                    <div class="bg-gray-100 p-4 rounded-lg text-gray-600">
+                        <strong>現金（円）の悲劇：</strong><br>
+                        30年前の100万円は、今の価値で約75万円。持っているだけで貧乏になっています。
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="flex items-center mb-6">
+                    <span class="bg-emerald-100 text-emerald-600 p-3 rounded-lg text-2xl mr-4">🔮</span>
+                    <div>
+                        <h2 class="text-2xl md:text-3xl font-bold text-slate-800">【今後20年】プロは「オルカン」推し</h2>
+                        <p class="text-slate-500 font-bold">ゴールドマン・サックス等の長期予測</p>
+                    </div>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm h-80 mb-4">
+                    <canvas id="chartFuture"></canvas>
+                </div>
+                <div class="bg-emerald-50 p-5 rounded-xl border border-emerald-100 text-sm text-slate-700">
+                    <h4 class="font-bold text-emerald-800 mb-2">なぜS&P500一本じゃダメなのか？</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li>米国株は現在「割高」すぎると指摘されています。今後10年の成長率は鈍化する予測です。</li>
+                        <li>一方で、出遅れていた新興国やその他の国への資金流入が期待されます。</li>
+                        <li><strong>結論：</strong>「どの国が勝ってもいい」状態を作れるオルカンが、最も合理的で負けにくい選択です。</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <div class="flex items-center mb-6">
+                    <span class="bg-yellow-100 text-yellow-600 p-3 rounded-lg text-2xl mr-4">🛡️</span>
+                    <div>
+                        <h2 class="text-2xl md:text-3xl font-bold text-slate-800">金の正解は「GLDM」一択</h2>
+                        <p class="text-slate-500 font-bold">30年後の手取り額シミュレーション（税引後）</p>
+                    </div>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm mb-4">
+                    <div class="h-64">
+                        <canvas id="chartGoldTax"></canvas>
+                    </div>
+                </div>
+                <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 text-sm">
+                    <p class="mb-2"><strong>なぜ現物（延べ棒など）はダメなのか？</strong></p>
+                    <p class="text-slate-600">
+                        現物は売却時に「総合課税」となり、年収が高い人ほど税率が高く（最大約55%）なります。<br>
+                        対して、証券口座で買うETF（GLDM）なら税率は一律約20%。<br>
+                        <strong>結果として、手元に残るお金に数百万円の差が出ます。</strong>
+                    </p>
+                </div>
+            </section>
+
+            <div class="border-t-4 border-slate-900 pt-12 mt-12">
+                <h2 class="text-2xl md:text-3xl font-black text-center mb-8">どこで何を買えばいい？</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200">
+                        <div class="text-xs font-bold text-slate-400 mb-2">STEP 01</div>
+                        <h3 class="text-xl font-bold mb-4">ネット証券を開設する</h3>
+                        <p class="text-sm text-slate-600 mb-4">
+                            銀行の窓口は手数料が高いのでNG。必ずネット証券を使ってください。
+                        </p>
+                        <div class="space-y-3">
+                            <div class="flex items-center p-3 bg-white rounded-lg shadow-sm font-bold text-slate-700">
+                                <span class="text-blue-600 mr-2">✓</span> SBI証券
+                            </div>
+                            <div class="flex items-center p-3 bg-white rounded-lg shadow-sm font-bold text-slate-700">
+                                <span class="text-red-600 mr-2">✓</span> 楽天証券
+                            </div>
+                            <div class="flex items-center p-3 bg-white rounded-lg shadow-sm font-bold text-slate-700">
+                                <span class="text-yellow-600 mr-2">✓</span> マネックス証券
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900 text-white p-8 rounded-2xl shadow-xl">
+                        <div class="text-xs font-bold text-slate-400 mb-2">STEP 02</div>
+                        <h3 class="text-xl font-bold mb-4">これを検索して買う</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <div class="text-emerald-400 text-xs font-bold mb-1">攻め（株式）</div>
+                                <div class="text-lg font-bold border-b border-slate-600 pb-1">eMAXIS Slim 全世界株式（オール・カントリー）</div>
+                                <div class="text-xs text-slate-400 mt-1">※NISA口座ならここを優先</div>
+                            </div>
+                            <div>
+                                <div class="text-yellow-400 text-xs font-bold mb-1">守り（金）</div>
+                                <div class="text-lg font-bold border-b border-slate-600 pb-1">GLDM</div>
+                                <div class="text-xs text-slate-400 mt-1">※SPDR Gold MiniShares Trust</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="text-center text-slate-400 text-xs mt-12">
+                    Information provided is for educational purposes only. <br>
+                    投資は自己責任で行ってください。
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        Chart.defaults.font.family = "'Noto Sans JP', sans-serif";
+        Chart.defaults.color = '#64748b';
+
+        // ① マクロ：マネーサプライ
+        new Chart(document.getElementById('chartMacro'), {
+            type: 'line',
+            data: {
+                labels: ['2015', '2017', '2019', '2021', '2023', '2025', '2027(予)'],
+                datasets: [
+                    { label: '日本円供給量 (増えすぎ)', data: [100, 108, 115, 130, 140, 148, 160], borderColor: '#ef4444', borderWidth: 3, tension: 0.4 },
+                    { label: '米ドル供給量', data: [100, 112, 125, 160, 158, 165, 175], borderColor: '#3b82f6', borderWidth: 2, borderDash: [5, 5], tension: 0.4 }
+                ]
+            },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' } } }
+        });
+
+        // ② 過去：S&P500 vs オルカン vs 金 vs 円
+        new Chart(document.getElementById('chartHistory'), {
+            type: 'line',
+            data: {
+                labels: ['1995', '2005', '2015', '2025'],
+                datasets: [
+                    { label: 'S&P500 (米国株)', data: [100, 210, 450, 1450], borderColor: '#3b82f6', borderWidth: 3 },
+                    { label: 'オルカン (世界株)', data: [100, 180, 380, 1100], borderColor: '#10b981', borderWidth: 3 },
+                    { label: '金 (Gold)', data: [100, 160, 350, 850], borderColor: '#f59e0b', borderWidth: 2 },
+                    { label: '日本円 (価値)', data: [100, 101, 95, 75], borderColor: '#94a3b8', borderWidth: 2, borderDash: [5, 5] }
+                ]
+            },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+        });
+
+        // ③ 未来：オルカン vs S&P500 vs 金 vs 円
+        new Chart(document.getElementById('chartFuture'), {
+            type: 'line',
+            data: {
+                labels: ['2025', '2030', '2035', '2040', '2045'],
+                datasets: [
+                    { label: 'オルカン (推奨)', data: [100, 150, 220, 330, 480], borderColor: '#10b981', borderWidth: 4 },
+                    { label: 'S&P500 (減速予想)', data: [100, 135, 180, 250, 340], borderColor: '#3b82f6', borderWidth: 2 },
+                    { label: '金 (安定)', data: [100, 120, 150, 180, 220], borderColor: '#f59e0b', borderWidth: 2, borderDash: [2, 2] },
+                    { label: '日本円 (減価)', data: [100, 95, 90, 85, 80], borderColor: '#94a3b8', borderWidth: 2, borderDash: [5, 5] }
+                ]
+            },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+        });
+
+        // ④ 金の税金（横棒）
+        new Chart(document.getElementById('chartGoldTax'), {
+            type: 'bar',
+            data: {
+                labels: ['GLDM (ETF)', '金現物', '投資信託'],
+                datasets: [{
+                    label: '30年後の手取り額 (万円)',
+                    data: [3591, 3512, 2963],
+                    backgroundColor: ['#10B981', '#F59E0B', '#94a3b8']
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } }
+            }
+        });
+    </script>
+</body>
+</html>
